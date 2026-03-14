@@ -6,7 +6,7 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 10:41:25 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/04 20:52:52 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/13 17:37:18 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include <sys/time.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include<limits.h>
+#include <unistd.h>
+#include <limits.h>
 
 typedef struct s_data
 {
@@ -45,6 +46,15 @@ typedef struct s_philo
 	t_data *data;
 } 	t_philo;
 
-int parse_args(int arg_cnt, char **args, t_data *data);
+/* Init functions */
+int init_data(t_data *data);
+int init_forks(t_data *data);
+void init_philos(t_data *data, t_philo *philos);
+int create_threads(t_data *data, t_philo *philos);
 
+/* Utils */
+int parse_args(int arg_cnt, char **args, t_data *data);
+void *philo_routine(void *arg);
+long get_time_ms(void);
+long timestamp(t_data *data);
 #endif
