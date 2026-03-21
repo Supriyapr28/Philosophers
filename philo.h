@@ -6,7 +6,7 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 10:41:25 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/20 22:28:27 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:14:16 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ long get_time_ms(void);
 long timestamp(t_data *data);
 void precise_usleep(long time_in_ms, t_data *data);
 void *monitor_routine(t_data *data, t_philo *philos);
+int is_dead(t_data *data);	
+void take_forks(t_philo *philo);
 #endif
