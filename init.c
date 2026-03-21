@@ -6,7 +6,7 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 11:41:15 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/14 10:26:51 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:36:36 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int init_data(t_data *data)
 
 int init_forks(t_data *data)
 {
-	int i = 0;
+	int i;
+	
+	i = 0;
 	while (i < data->n_philo)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL))

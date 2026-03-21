@@ -12,12 +12,13 @@
 
 #include "philo.h"
 
-void	print_status(t_philo *philo, char *status)
+static void *handle_single_philo(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->data->print_mutex);
-	if (!is_dead(philo->data))
-		printf("%ld %d %s\n", timestamp(philo->data), philo->id, status);
-	pthread_mutex_unlock(&philo->data->print_mutex);
+	pthread_mutex_lock(philo->left_fork);
+	print_status(philo, "has taken a fork");
+	precise_usleep(philo->data->time_die, philo->data);
+	pthread_mutex_unlock(philo->left_fork);
+	return (NULL);
 }
 
 void take_forks(t_philo *philo)
@@ -44,13 +45,7 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->data->n_philo == 1)
-	{
-		pthread_mutex_lock(philo->left_fork);
-		print_status(philo, "has taken a fork");
-		precise_usleep(philo->data->time_die, philo->data);
-		pthread_mutex_unlock(philo->left_fork);
-		return (NULL);
-	}
+		return (handle_single_philo(philo));
 	if (philo->id % 2 == 0)
 		usleep(1000);
 	while (!is_dead(philo->data))

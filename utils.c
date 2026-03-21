@@ -6,7 +6,7 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 11:40:50 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/13 18:01:28 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:45:25 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 long ft_atol(const char *str)
 {
-	long result = 0;
-	int i = 0;
+	long result;
+	int i;
+
+	result = 0;
+	i = 0;
 	while (str[i])
 	{
 		result = result * 10 + (str[i] - '0');
@@ -42,9 +45,9 @@ int is_number(char *str)
 int parse_args(int arg_cnt, char **args, t_data *data)
 {
 	int i;
+	
 	if (arg_cnt != 5 && arg_cnt != 6)
 		return (1);
-
 	i = 0;
 	while (args[i])
 	{
@@ -77,3 +80,10 @@ int is_dead(t_data *data)
     return (result);
 }
 
+void	print_status(t_philo *philo, char *status)
+{
+	pthread_mutex_lock(&philo->data->print_mutex);
+	if (!is_dead(philo->data))
+		printf("%ld %d %s\n", timestamp(philo->data), philo->id, status);
+	pthread_mutex_unlock(&philo->data->print_mutex);
+}
