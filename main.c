@@ -6,21 +6,21 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 11:41:09 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/21 15:28:43 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/21 18:23:40 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_data data;
-	t_philo *philos;
-	
+	t_data	data;
+	t_philo	*philos;
+
 	if (parse_args(ac, av + 1, &data) != 0)
 	{
 		printf("Error: Invalid arguments\n");
-		return(1);
+		return (1);
 	}
 	philos = malloc(sizeof(t_philo) * data.n_philo);
 	if (!philos)

@@ -6,16 +6,16 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 11:40:50 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/21 15:45:25 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/21 18:17:12 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
-	long result;
-	int i;
+	long	result;
+	int		i;
 
 	result = 0;
 	i = 0;
@@ -29,7 +29,7 @@ long ft_atol(const char *str)
 	return (result);
 }
 
-int is_number(char *str)
+int	is_number(char *str)
 {
 	if (!str || str[0] == '\0')
 		return (0);
@@ -42,10 +42,10 @@ int is_number(char *str)
 	return (1);
 }
 
-int parse_args(int arg_cnt, char **args, t_data *data)
+int	parse_args(int arg_cnt, char **args, t_data *data)
 {
-	int i;
-	
+	int	i;
+
 	if (arg_cnt != 5 && arg_cnt != 6)
 		return (1);
 	i = 0;
@@ -62,28 +62,20 @@ int parse_args(int arg_cnt, char **args, t_data *data)
 	data->must_eat = -1;
 	if (arg_cnt == 6)
 		data->must_eat = ft_atol(args[4]);
-	if (data->n_philo <= 0 || data->time_die <= 0 
-		|| data->time_eat <= 0 || data->time_sleep <= 0 )
+	if (data->n_philo <= 0 || data->time_die <= 0 || data->time_eat <= 0
+		|| data->time_sleep <= 0)
 		return (1);
 	if (arg_cnt == 6 && data->must_eat <= 0)
 		return (1);
 	return (0);
 }
 
-int is_dead(t_data *data)
+int	is_dead(t_data *data)
 {
-    int result;
+	int	result;
 
-    pthread_mutex_lock(&data->death_mutex);
-    result = data->dead;
-    pthread_mutex_unlock(&data->death_mutex);
-    return (result);
-}
-
-void	print_status(t_philo *philo, char *status)
-{
-	pthread_mutex_lock(&philo->data->print_mutex);
-	if (!is_dead(philo->data))
-		printf("%ld %d %s\n", timestamp(philo->data), philo->id, status);
-	pthread_mutex_unlock(&philo->data->print_mutex);
+	pthread_mutex_lock(&data->death_mutex);
+	result = data->dead;
+	pthread_mutex_unlock(&data->death_mutex);
+	return (result);
 }

@@ -6,16 +6,16 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 11:40:43 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/14 09:24:38 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/21 18:02:08 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void precise_usleep(long time_in_ms, t_data *data)
+void	precise_usleep(long time_in_ms, t_data *data)
 {
-	long start_time;
-	
+	long	start_time;
+
 	start_time = get_time_ms();
 	while ((get_time_ms() - start_time) < time_in_ms)
 	{
@@ -30,14 +30,15 @@ void precise_usleep(long time_in_ms, t_data *data)
 	}
 }
 
-long get_time_ms(void)
+long	get_time_ms(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
+
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-long timestamp(t_data *data)
+long	timestamp(t_data *data)
 {
 	return (get_time_ms() - data->start_time);
 }
