@@ -6,7 +6,7 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 11:41:15 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/02/12 19:12:47 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/14 10:26:51 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,31 @@ int create_threads(t_data *data, t_philo *philos)
 		i++;
 	}
 	return (0);
+}
+
+
+void cleanup(t_data *data, t_philo *philos)
+{
+	int i;
+	
+	i = 0;
+	if (philos)
+	{
+		while (i < data->n_philo)
+		{
+			pthread_join(philos[i].thread, NULL);
+			i++;
+		}
+		i = 0;
+		while (i < data->n_philo)
+		{
+			pthread_mutex_destroy(&data->forks[i]);
+			i++;
+		}
+		free(philos);
+	}
+	pthread_mutex_destroy(&data->print_mutex);
+	pthread_mutex_destroy(&data->death_mutex);
+	if (data->forks)
+		free(data->forks);
 }

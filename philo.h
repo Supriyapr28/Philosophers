@@ -6,7 +6,7 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 10:41:25 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/13 17:37:18 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/20 22:28:27 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,13 @@ int init_data(t_data *data);
 int init_forks(t_data *data);
 void init_philos(t_data *data, t_philo *philos);
 int create_threads(t_data *data, t_philo *philos);
+void cleanup(t_data *data, t_philo *philos);
 
 /* Utils */
 int parse_args(int arg_cnt, char **args, t_data *data);
 void *philo_routine(void *arg);
 long get_time_ms(void);
 long timestamp(t_data *data);
+void precise_usleep(long time_in_ms, t_data *data);
+void *monitor_routine(t_data *data, t_philo *philos);
 #endif
