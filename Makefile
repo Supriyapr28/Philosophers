@@ -6,13 +6,13 @@
 #    By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/04 10:22:53 by spaipur-          #+#    #+#              #
-#    Updated: 2026/03/21 18:57:22 by spaipur-         ###   ########.fr        #
+#    Updated: 2026/03/23 10:47:17 by spaipur-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRCS = main.c time.c utils.c init.c routine.c monitor.c status.c
+SRCS = main.c time.c init.c routine.c monitor.c 
 
 cc = gcc
 CFLAGS = -Wall -Wextra -Werror 

@@ -6,7 +6,7 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 11:41:15 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/21 18:22:26 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/23 10:40:10 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	init_data(t_data *data)
 	if (pthread_mutex_init(&data->print_mutex, NULL))
 		return (1);
 	if (pthread_mutex_init(&data->death_mutex, NULL))
-		return (1);
-	if (pthread_mutex_init(&data->meal_mutex, NULL))
 		return (1);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philo);
 	if (!data->forks)
@@ -79,30 +77,4 @@ int	create_threads(t_data *data, t_philo *philos)
 	return (0);
 }
 
-void	cleanup(t_data *data, t_philo *philos)
-{
-	int	i;
 
-	i = 0;
-	if (philos)
-	{
-		while (i < data->n_philo)
-		{
-			pthread_join(philos[i].thread, NULL);
-			i++;
-		}
-		i = 0;
-		while (i < data->n_philo)
-		{
-			pthread_mutex_destroy(&data->forks[i]);
-			pthread_mutex_destroy(&philos[i].meal_lock);
-			i++;
-		}
-		free(philos);
-	}
-	pthread_mutex_destroy(&data->print_mutex);
-	pthread_mutex_destroy(&data->death_mutex);
-	pthread_mutex_destroy(&data->meal_mutex);
-	if (data->forks)
-		free(data->forks);
-}

@@ -6,7 +6,7 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 10:41:25 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/21 18:37:07 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/23 10:31:33 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <unistd.h>
 # include <limits.h>
 
+/**
+ * Shared data across all philosopher threads
+ */
 typedef struct s_data
 {
 	int				n_philo;
@@ -32,18 +35,20 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	death_mutex;
-	pthread_mutex_t	meal_mutex;	
 }	t_data;
 
+/*
+ * Individual philosopher's state and threading data
+ */
 typedef struct s_philo
 {
 	int				id;
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	meal_lock;
 	long			last_meal;
 	int				meals;
-	pthread_mutex_t	meal_lock;
 	t_data			*data;
 }	t_philo;
 

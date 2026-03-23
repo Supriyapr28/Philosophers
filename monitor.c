@@ -6,11 +6,31 @@
 /*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 18:00:00 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/21 18:53:09 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/23 10:46:04 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	is_dead(t_data *data)
+{
+	int	result;
+
+	pthread_mutex_lock(&data->death_mutex);
+	result = data->dead;
+	pthread_mutex_unlock(&data->death_mutex);
+	return (result);
+}
+
+void	print_status(t_philo *philo, char *status)
+{
+	pthread_mutex_lock(&philo->data->print_mutex);
+	pthread_mutex_lock(&philo->data->death_mutex);
+	if (!philo->data->dead)
+		printf("%ld %d %s\n", timestamp(philo->data), philo->id, status);
+	pthread_mutex_unlock(&philo->data->death_mutex);
+	pthread_mutex_unlock(&philo->data->print_mutex);
+}
 
 static int	check_death(t_data *data, t_philo *philos)
 {
