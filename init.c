@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spaipur- <<spaipur-@student.42.fr>>        +#+  +:+       +#+        */
+/*   By: spaipur- <spaipur-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 11:41:15 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/03/23 10:40:10 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/03/24 12:08:08 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,3 @@ int	create_threads(t_data *data, t_philo *philos)
 	}
 	return (0);
 }
-
-
